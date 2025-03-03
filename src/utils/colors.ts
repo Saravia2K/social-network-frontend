@@ -1,0 +1,7 @@
+export default {
+  MAIN_BLUE: "#4A90E2",
+  SOFT_GREY: "#F2F4F7",
+  VIBRANT_GREEN: "#50E3C2",
+  WARM_ORANGE: "#FF6F61",
+  SOFT_PURPLE: "#8E8CD8",
+};
