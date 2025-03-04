@@ -1,6 +1,6 @@
 import { API_URL } from "../../utils/consts";
 import { TErrorResponse } from "../../utils/types";
-import { RegisterUserDTO } from "./types";
+import { RegisterUserDTO, TLoginResponse, TUser } from "./types";
 
 export default class UserServices {
   static USERS_URL = `${API_URL}/usuarios`;
@@ -24,6 +24,35 @@ export default class UserServices {
 
     return {
       success: true,
+    };
+  }
+
+  static async login(
+    username: string,
+    password: string
+  ): Promise<TLoginResponse> {
+    const response = await fetch(`${this.USERS_URL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const loginOk = response.ok;
+    const data = await response.json();
+    if (!loginOk) {
+      const { message } = data as TErrorResponse;
+      return {
+        success: false,
+        message,
+      };
+    }
+
+    const user = data as TUser;
+    return {
+      success: true,
+      user,
     };
   }
 }
