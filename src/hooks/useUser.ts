@@ -5,7 +5,7 @@ import { TUser } from "../services/UserServices/types";
 const useUser = create(
   persist<UserStore>(
     (set) => ({
-      user: undefined,
+      user: null,
       setUser: (user) => set({ user }),
     }),
     {
@@ -18,6 +18,6 @@ const useUser = create(
 export default useUser;
 
 type UserStore = {
-  user?: TUser;
+  user: TUser | null;
   setUser: (user: TUser) => void;
 };

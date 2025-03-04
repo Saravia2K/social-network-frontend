@@ -96,7 +96,7 @@ export default function LoginPage() {
               sx={{ bgcolor: COLORS.SOFT_PURPLE }}
               disabled={isValidating || isSubmitting}
             >
-              Registrarse
+              Iniciar Sesión
             </Button>
             <Link
               to="/registro"

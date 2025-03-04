@@ -3,16 +3,19 @@ import IndexPage from "./pages/Index";
 import Navbar from "./layouts/Navbar";
 import RegistroPage from "./pages/Registro";
 import LoginPage from "./pages/Login";
+import { ToastContainer } from "react-toastify";
+import ReverseProtectedRoute from "./components/ReverseProtectedRoute";
 
 import "./App.css";
-import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="registro" element={<RegistroPage />} />
-        <Route path="login" element={<LoginPage />} />
+        <Route element={<ReverseProtectedRoute />}>
+          <Route path="registro" element={<RegistroPage />} />
+          <Route path="login" element={<LoginPage />} />
+        </Route>
         <Route element={<Navbar />}>
           <Route index element={<IndexPage />} />
         </Route>

@@ -1,4 +1,4 @@
-import { Outlet } from "react-router";
+import { Navigate, Outlet } from "react-router";
 import {
   AppBar,
   Avatar,
@@ -15,11 +15,13 @@ import {
 import AdbIcon from "@mui/icons-material/Adb";
 import { useState } from "react";
 import colors from "../../utils/colors";
+import useUser from "../../hooks/useUser";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export default function Navbar() {
+  const { user } = useUser();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -30,6 +32,7 @@ export default function Navbar() {
     setAnchorElUser(null);
   };
 
+  if (user == null) return <Navigate to="/login" />;
   return (
     <Box minHeight="100%" height="100%" bgcolor={colors.SOFT_GREY}>
       <AppBar position="static" sx={{ bgcolor: colors.MAIN_BLUE }}>
