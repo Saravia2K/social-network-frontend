@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import {
   Button,
   Grid2 as Grid,
@@ -108,6 +108,17 @@ export default function RegistroPage() {
             >
               Registrarse
             </Button>
+            <Link
+              to="/login"
+              style={{
+                textAlign: "center",
+                fontSize: 15,
+                color: "grey",
+                textDecoration: "underline",
+              }}
+            >
+              ¿Ya tienes una cuenta? Inicia Sesión
+            </Link>
           </Stack>
         </Paper>
       </Grid>
