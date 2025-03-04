@@ -47,10 +47,11 @@ export default function Post({ idGroup, onPostCreated }: TProps) {
     });
   };
 
+  console.log(user?.username);
   return (
     <Grid container spacing={2} columns={12} sx={{ p: 2 }} component={Paper}>
       <Grid size={2}>
-        <Avatar name="Diego José Saravia" />
+        <Avatar name={user?.username} />
       </Grid>
       <Grid size={10}>
         <Stack spacing={2}>

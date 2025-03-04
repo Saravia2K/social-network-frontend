@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from "react-router";
+import { Link, Navigate, Outlet } from "react-router";
 import {
   AppBar,
   Avatar,
@@ -17,8 +17,7 @@ import { useState } from "react";
 import colors from "../../utils/colors";
 import useUser from "../../hooks/useUser";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Logout"];
 
 export default function Navbar() {
   const { user } = useUser();
@@ -34,7 +33,7 @@ export default function Navbar() {
 
   if (user == null) return <Navigate to="/login" />;
   return (
-    <Box minHeight="100%" height="100%" bgcolor={colors.SOFT_GREY}>
+    <Box minHeight="100%" height="auto" bgcolor={colors.SOFT_GREY}>
       <AppBar position="static" sx={{ bgcolor: colors.MAIN_BLUE }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
@@ -42,8 +41,8 @@ export default function Navbar() {
             <Typography
               variant="h6"
               noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
+              component={Link}
+              to="/"
               sx={{
                 mr: 2,
                 display: { xs: "none", md: "flex" },
@@ -77,14 +76,12 @@ export default function Navbar() {
               LOGO
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {page}
-                </Button>
-              ))}
+              <Button sx={{ my: 2, color: "white", display: "block" }}>
+                <Link to="/">Inicio</Link>
+              </Button>
+              <Button sx={{ my: 2, color: "white", display: "block" }}>
+                <Link to="/mensajes">Mensajes</Link>
+              </Button>
             </Box>
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">

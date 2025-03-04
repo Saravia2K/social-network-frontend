@@ -5,8 +5,10 @@ import RegistroPage from "./pages/Registro";
 import LoginPage from "./pages/Login";
 import { ToastContainer } from "react-toastify";
 import ReverseProtectedRoute from "./components/ReverseProtectedRoute";
+import MensajesPage from "./pages/Mensajes";
 
 import "./App.css";
+import GrupoPage from "./pages/Grupo";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         </Route>
         <Route element={<Navbar />}>
           <Route index element={<IndexPage />} />
+          <Route path="mensajes" element={<MensajesPage />} />
+          <Route path="grupo/:id" element={<GrupoPage />} />
         </Route>
       </Routes>
       <ToastContainer hideProgressBar />

@@ -22,12 +22,19 @@ export default function Avatar({ name, src }: Props) {
   function stringAvatar(name?: string) {
     if (!name) return {};
 
+    const nameSplitted = name.split(" ");
+    const firstName = nameSplitted[0];
+    const secondName = nameSplitted[1];
     return {
       sx: {
         bgcolor: stringToColor(name),
       },
-      children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+      children: `${getNameLetter(firstName)}${getNameLetter(secondName)}`,
     };
+  }
+
+  function getNameLetter(name?: string) {
+    return name ? name[0].toUpperCase() : "";
   }
 
   return src ? <MUIAvatar src={src} /> : <MUIAvatar {...stringAvatar(name)} />;

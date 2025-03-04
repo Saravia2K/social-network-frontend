@@ -1,5 +1,5 @@
 export enum POST_STATE {
-  SENT,
-  APPROVED,
-  REJECTED,
+  SENT = "SENT",
+  APPROVED = "APPROVED",
+  REJECTED = "REJECTED",
 }
