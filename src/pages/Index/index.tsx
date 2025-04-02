@@ -105,7 +105,7 @@ export default function IndexPage() {
                 alignItems="center"
               >
                 <GroupsIcon />
-                <Typography>Hola</Typography>
+                <Typography>{g.name}</Typography>
                 <Button
                   variant="contained"
                   onClick={() => handleJoinGroup(g.id)}

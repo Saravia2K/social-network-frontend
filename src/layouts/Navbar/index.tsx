@@ -1,7 +1,6 @@
-import { Link, Navigate, Outlet } from "react-router";
+import { Link, Navigate, Outlet, useNavigate } from "react-router";
 import {
   AppBar,
-  Avatar,
   Box,
   Button,
   Container,
@@ -16,12 +15,12 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { useState } from "react";
 import colors from "../../utils/colors";
 import useUser from "../../hooks/useUser";
-
-const settings = ["Logout"];
+import Avatar from "../../components/Avatar";
 
 export default function Navbar() {
-  const { user } = useUser();
+  const { user, setUser } = useUser();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -29,6 +28,11 @@ export default function Navbar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    navigate("/login");
   };
 
   if (user == null) return <Navigate to="/login" />;
@@ -86,10 +90,7 @@ export default function Navbar() {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar
-                    alt="Diego Saravia"
-                    src="/static/images/avatar/2.jpg"
-                  />
+                  <Avatar name={user.username} />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -108,13 +109,14 @@ export default function Navbar() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography sx={{ textAlign: "center" }}>
-                      {setting}
-                    </Typography>
-                  </MenuItem>
-                ))}
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography
+                    sx={{ textAlign: "center" }}
+                    onClick={handleLogout}
+                  >
+                    Cerrar Sesión
+                  </Typography>
+                </MenuItem>
               </Menu>
             </Box>
           </Toolbar>

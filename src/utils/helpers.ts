@@ -33,6 +33,12 @@ export const basicFetch = async <
     body: JSON.stringify(body),
   });
 
+  if (method == "DELETE")
+    return {
+      success: true,
+      message: "",
+    };
+
   const isOk = response.ok;
   const data = await response.json();
   if (!isOk) {

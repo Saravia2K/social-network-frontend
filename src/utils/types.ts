@@ -34,3 +34,17 @@ export type TMessage = {
   date: string;
   message: string;
 };
+
+export type TGroupMember = {
+  id: number;
+  idUsuario: TUser;
+  idGroup: TGroup;
+  state: string;
+  joinDate: string;
+};
+
+export type TModerator = {
+  id: number;
+  idUsuario: TUser;
+  idGroup: TGroup;
+};

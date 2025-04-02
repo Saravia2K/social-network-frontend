@@ -19,5 +19,5 @@ export default useUser;
 
 type UserStore = {
   user: TUser | null;
-  setUser: (user: TUser) => void;
+  setUser: (user: TUser | null) => void;
 };
